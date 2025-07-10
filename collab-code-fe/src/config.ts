@@ -1,1 +1,1 @@
-export const BACKEND_URL = "http://localhost:3001";
+export const BACKEND_URL = "https://collab-code-backend-qdi6.onrender.com";
