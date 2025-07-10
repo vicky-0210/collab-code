@@ -1,0 +1,1 @@
+{"root":["./src/config.ts","./src/db.ts","./src/index.ts","./src/middleware.ts","./src/privatechat.ts","./src/room.ts","./src/sockets/authhandlers.ts","./src/sockets/filehandlers.ts","./src/sockets/folderhandlers.ts","./src/sockets/index.ts","./src/sockets/roomhandlers.ts","./src/sockets/userhandlers.ts"],"version":"5.8.3"}
