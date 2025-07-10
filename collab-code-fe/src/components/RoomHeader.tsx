@@ -28,7 +28,7 @@ export const RoomHeader: React.FC<RoomHeaderProps> = ({
         </div>
         
         <div className="flex-1 flex justify-center items-center space-x-8">
-          <Link to="/" className="text-[#7aa2f7] hover:underline font-semibold">Home</Link>
+          <Link to="/home" className="text-[#7aa2f7] hover:underline font-semibold">Home</Link>
           <Link to={`/room/${roomId}/private-chat`} className="text-[#7aa2f7] hover:underline font-semibold">Chat</Link>
           <Link to={`/room/${roomId}`} className="text-[#c0caf5] font-semibold">Room</Link>
         </div>
