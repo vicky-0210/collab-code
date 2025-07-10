@@ -5,7 +5,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.authenticateSocket = authenticateSocket;
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const config_1 = require("../config");
+const JWT_PASS = process.env.JWT_PASS;
+if (!JWT_PASS) {
+    throw new Error("JWT_PASS environment variable is not set");
+}
 function authenticateSocket(socket) {
     var _a;
     try {
@@ -18,7 +21,7 @@ function authenticateSocket(socket) {
             });
             return null;
         }
-        const decoded = jsonwebtoken_1.default.verify(token, config_1.JWT_PASS);
+        const decoded = jsonwebtoken_1.default.verify(token, JWT_PASS);
         if (!decoded || typeof decoded !== 'object' || !decoded.id) {
             throw new Error('Invalid token payload');
         }
