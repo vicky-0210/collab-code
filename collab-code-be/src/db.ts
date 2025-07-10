@@ -1,6 +1,5 @@
 import mongoose, { model, Schema, Document, Model } from "mongoose";
-
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://vivekgupta8106:fTdi6r7FKVUVeyNL@cluster0.8gyrr.mongodb.net/collab-code";
+import { MONGODB_URI } from "./config";
 
 if (!MONGODB_URI) {
   throw new Error('MONGODB_URI environment variable is not defined');

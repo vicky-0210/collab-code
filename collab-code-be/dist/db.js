@@ -44,11 +44,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PrivateChat = exports.FileModel = exports.FolderModel = exports.RoomModel = exports.UserModel = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
-const MONGODB_URI = process.env.MONGODB_URI || "mongodb+srv://vivekgupta8106:fTdi6r7FKVUVeyNL@cluster0.8gyrr.mongodb.net/collab-code";
-if (!MONGODB_URI) {
+const config_1 = require("./config");
+if (!config_1.MONGODB_URI) {
     throw new Error('MONGODB_URI environment variable is not defined');
 }
-mongoose_1.default.connect(MONGODB_URI, {
+mongoose_1.default.connect(config_1.MONGODB_URI, {
     serverSelectionTimeoutMS: 5000,
     socketTimeoutMS: 45000,
     family: 4
