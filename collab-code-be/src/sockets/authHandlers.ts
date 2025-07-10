@@ -1,6 +1,9 @@
 import { Socket } from "socket.io";
 import jwt from "jsonwebtoken";
-import { JWT_PASS } from "../config";
+const JWT_PASS = process.env.JWT_PASS;
+if (!JWT_PASS) {
+  throw new Error("JWT_PASS environment variable is not set");
+}
 
 interface JWTPayload {
   id: string;
@@ -19,7 +22,7 @@ export function authenticateSocket(socket: Socket): string | null {
       });
       return null;
     }
-    const decoded = jwt.verify(token, JWT_PASS) as JWTPayload;
+    const decoded = jwt.verify(token, JWT_PASS as string) as unknown as JWTPayload;
 
     if (!decoded || typeof decoded !== 'object' || !decoded.id) {
       throw new Error('Invalid token payload');
