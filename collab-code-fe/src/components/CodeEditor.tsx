@@ -352,7 +352,6 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
               wordWrap: 'on',
               scrollBeyondLastLine: false,
               automaticLayout: true,
-              validate: true,
               glyphMargin: true,
               folding: true,
               lineNumbers: 'on',
