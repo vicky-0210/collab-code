@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/theme.css';
 import { io, Socket } from 'socket.io-client';
 
+import { BACKEND_URL } from '../config';
+
 interface Room {
   id: string;
   name: string;
@@ -20,7 +22,7 @@ const Home: React.FC = () => {
 
   useEffect(() => {
     const token = localStorage.getItem('token');
-    const newSocket = io('http://localhost:3001', {
+    const newSocket = io(`${BACKEND_URL}`, {
       auth: { token }
     });
     socket.current = newSocket;

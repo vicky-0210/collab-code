@@ -1,6 +1,9 @@
 import { Request,Response,NextFunction } from "express";
 import  jwt  from "jsonwebtoken";
-import { JWT_PASS } from "./config";
+const JWT_PASS = process.env.JWT_PASS;
+if (!JWT_PASS) {
+    throw new Error('JWT_PASS environment variable is not defined');
+}
 export const userMiddleware = (req:Request,res:Response,next:NextFunction)=>{
     const header = req.headers["authorization"];
     const decoded = jwt.verify(header as string,JWT_PASS);

@@ -12,6 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+require('dotenv').config();
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const bcrypt_1 = __importDefault(require("bcrypt"));
@@ -20,9 +21,9 @@ const zod_1 = require("zod");
 const http_1 = require("http");
 const socket_io_1 = require("socket.io");
 const db_1 = require("./db");
-const config_1 = require("./config");
 const room_1 = require("./room");
 const privateChat_1 = require("./privateChat");
+const JWT_PASS = process.env.JWT_PASS;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
     origin: "http://localhost:5173",
@@ -68,10 +69,10 @@ app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
         if (!isPasswordCorrect) {
             return res.status(403).json({ message: "Incorrect credentials" });
         }
-        if (!config_1.JWT_PASS) {
+        if (!JWT_PASS) {
             return res.status(500).json({ error: "JWT secret is not configured" });
         }
-        const token = jsonwebtoken_1.default.sign({ id: user._id }, config_1.JWT_PASS);
+        const token = jsonwebtoken_1.default.sign({ id: user._id }, JWT_PASS);
         return res.status(200).json({ token });
     }
     catch (err) {

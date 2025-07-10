@@ -1,7 +1,13 @@
 import { Server, Socket } from 'socket.io';
 import { PrivateChat, IPrivateChatDocument } from './db';
 import jwt from 'jsonwebtoken';
-import { JWT_PASS } from './config';
+
+const JWT_PASS = process.env.JWT_PASS;
+if (!JWT_PASS) {
+  console.error('JWT_PASS environment variable is not defined');
+  throw new Error('JWT_PASS environment variable is not defined');
+}
+
 
 export function registerPrivateChatHandlers(io: Server, socket: Socket) {
   socket.on('joinPrivateChat', ({ roomId, userId }) => {
@@ -147,7 +153,7 @@ export function registerPrivateChatHandlers(io: Server, socket: Socket) {
       
       let decoded: any;
       try {
-        decoded = jwt.verify(token, JWT_PASS);
+        decoded = jwt.verify(token, JWT_PASS as string);
         console.log('[sendPrivateMessage] JWT decoded successfully:', { userId: decoded.userId, username: decoded.username });
       } catch (err) {
         console.error('[sendPrivateMessage] JWT verification failed:', err);

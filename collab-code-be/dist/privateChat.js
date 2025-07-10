@@ -15,7 +15,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.registerPrivateChatHandlers = registerPrivateChatHandlers;
 const db_1 = require("./db");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-const config_1 = require("./config");
+const JWT_PASS = process.env.JWT_PASS;
+if (!JWT_PASS) {
+    console.error('JWT_PASS environment variable is not defined');
+    throw new Error('JWT_PASS environment variable is not defined');
+}
 function registerPrivateChatHandlers(io, socket) {
     socket.on('joinPrivateChat', ({ roomId, userId }) => {
         const roomKey = `privatechat:${roomId}:${userId}`;
@@ -135,7 +139,7 @@ function registerPrivateChatHandlers(io, socket) {
             }
             let decoded;
             try {
-                decoded = jsonwebtoken_1.default.verify(token, config_1.JWT_PASS);
+                decoded = jsonwebtoken_1.default.verify(token, JWT_PASS);
                 console.log('[sendPrivateMessage] JWT decoded successfully:', { userId: decoded.userId, username: decoded.username });
             }
             catch (err) {

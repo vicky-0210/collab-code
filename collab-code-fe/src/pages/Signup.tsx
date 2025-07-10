@@ -1,10 +1,11 @@
 import { Button } from "../components/button";
 import { Input } from "../components/Input";
 import axios from "axios";
-import { BACKEND_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import "../styles/theme.css";
+
+import { BACKEND_URL } from "../config";
 
 export default function Signup() {
   const usernameref = useRef<HTMLInputElement | null>(null);

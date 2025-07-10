@@ -1,3 +1,4 @@
+require('dotenv').config();
 import express from "express";
 import cors from "cors";
 import bcrypt from "bcrypt";
@@ -7,9 +8,10 @@ import { createServer } from "http";
 import { Server as IOServer } from "socket.io";
 
 import { UserModel } from "./db";
-import { JWT_PASS } from "./config";
 import { registerSocketHandlers } from "./room";
 import { registerPrivateChatHandlers } from './privateChat';
+
+const JWT_PASS = process.env.JWT_PASS;
 
 const app = express();
 app.use(cors({

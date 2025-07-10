@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
 import type { RoomData, FileData, TypingUser, UserCursor, FolderData } from '../types/room.types';
-
+import { BACKEND_URL } from '../config';
 export const useSocket = (roomId: string) => {
   const socket = useRef<Socket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
@@ -20,7 +20,7 @@ export const useSocket = (roomId: string) => {
     const token = localStorage.getItem('token');
     console.log('useSocket: Token found:', !!token);
 
-    const newSocket = io('http://localhost:3001', {
+    const newSocket = io(`${BACKEND_URL}`, {
       auth: { token },
       timeout: 10000, 
       reconnection: true,
