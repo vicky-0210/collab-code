@@ -15,7 +15,7 @@ const JWT_PASS = process.env.JWT_PASS;
 
 const app = express();
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://collab-code-frontend.onrender.com",
   credentials: true,
 }));
 app.use(express.json());
@@ -80,7 +80,7 @@ app.post("/api/v1/signin", async (req, res) => {
 const server = createServer(app);
 const io = new IOServer(server, {
   cors: {
-    origin: "http://localhost:5173",
+    origin: "https://collab-code-frontend.onrender.com",
     methods: ["GET", "POST"],
     credentials: true
   }
