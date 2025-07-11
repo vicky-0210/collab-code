@@ -76,6 +76,9 @@ app.post("/api/v1/signin", async (req, res) => {
   }
 });
 
+app.get('/api/v1/health', (req, res) => {
+  res.send('OK');
+});
 
 const server = createServer(app);
 const io = new IOServer(server, {
