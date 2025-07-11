@@ -26,7 +26,7 @@ const privateChat_1 = require("./privateChat");
 const JWT_PASS = process.env.JWT_PASS;
 const app = (0, express_1.default)();
 app.use((0, cors_1.default)({
-    origin: "http://localhost:5173",
+    origin: "https://collab-code-frontend.onrender.com",
     credentials: true,
 }));
 app.use(express_1.default.json());
@@ -79,10 +79,13 @@ app.post("/api/v1/signin", (req, res) => __awaiter(void 0, void 0, void 0, funct
         return res.status(500).json({ error: "Internal Server Error" });
     }
 }));
+app.get('/api/v1/health', (req, res) => {
+    res.send('OK');
+});
 const server = (0, http_1.createServer)(app);
 const io = new socket_io_1.Server(server, {
     cors: {
-        origin: "http://localhost:5173",
+        origin: "https://collab-code-frontend.onrender.com",
         methods: ["GET", "POST"],
         credentials: true
     }
